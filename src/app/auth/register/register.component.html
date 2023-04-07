@@ -1,1 +1,132 @@
-<p>register works!</p>
+<div class="vh-100 d-flex justify-content-center align-items-center custom-bg">
+  <div class="card bg-light custom-card-bg" style="max-width: 400px">
+    <div class="card-body">
+      <div class="d-flex justify-content-center">
+        <div class="d-flex align-items-center">
+          <i class="fas fa-sign-in-alt fa-lg me-2"></i>
+          <h4 class="card-title mt-2 text-center ms-2">Register</h4>
+        </div>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <span
+          *ngIf="
+            !registerForm.get('fullName')!.valid &&
+            registerForm.get('fullName')!.touched
+          "
+          class="form-text"
+          style="color: red"
+          >Please enter a valid name
+        </span>
+        <div
+          class="input-group mb-3"
+          [ngClass]="{
+            'has-error':
+              !registerForm.get('fullName')!.valid &&
+              registerForm.get('fullName')!.touched
+          }"
+        >
+          <span class="input-group-text"><i class="fa fa-user"></i></span>
+          <input
+            class="form-control"
+            placeholder="Full name"
+            type="text"
+            formControlName="fullName"
+          />
+        </div>
+
+        <span
+          *ngIf="
+            !registerForm.get('email')!.valid &&
+            registerForm.get('email')!.touched
+          "
+          class="form-text"
+          style="color: red"
+          >Please enter a valid email
+        </span>
+        <div class="input-group mb-3"
+        [ngClass]="{
+          'has-error':
+            !registerForm.get('email')!.valid &&
+            registerForm.get('email')!.touched
+        }">
+          <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+          <input
+            name=""
+            class="form-control"
+            id="floatingEmail"
+            placeholder="Email address"
+            type="email"
+            formControlName="email"
+          />
+        </div>
+
+        <span
+          *ngIf="
+            !registerForm.get('password')!.valid &&
+            registerForm.get('password')!.touched
+          "
+          class="form-text"
+          style="color: red"
+          >Password is required
+        </span>
+        <div class="input-group mb-3"
+        [ngClass]="{
+          'has-error':
+            !registerForm.get('password')!.valid &&
+            registerForm.get('password')!.touched
+        }">
+          <span class="input-group-text"><i class="fa fa-key"></i></span>
+          <input
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+            type="password"
+            formControlName="password"
+          />
+        </div>
+
+        <span
+          *ngIf="
+            !registerForm.get('repeatedPassword')!.valid &&
+            registerForm.get('repeatedPassword')!.touched
+          "
+          class="form-text"
+          style="color: red"
+          >Password is required
+        </span>
+        <div class="input-group mb-3"
+        [ngClass]="{
+          'has-error':
+            !registerForm.get('repeatedPassword')!.valid &&
+            registerForm.get('repeatedPassword')!.touched
+        }">
+          <span class="input-group-text"><i class="fa fa-key"></i></span>
+          <input
+            class="form-control"
+            id="floatingRepeatPassword"
+            placeholder="Repeat password"
+            type="password"
+            formControlName="repeatedPassword"
+          />
+        </div>
+
+        <div class="d-grid">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="registerForm.invalid"
+          >
+            Register
+          </button>
+        </div>
+
+        <p class="text-center mt-3">
+          <a href="#" class="text-decoration-none"
+            ><i class="fas fa-sign-in-alt me-2"></i>Go to Login</a
+          >
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

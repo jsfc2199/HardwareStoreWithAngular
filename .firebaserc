@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "hardwarestorewithangular": {
+      "hosting": {
+        "Hardware-Store": [
+          "hardwarestorewithangular"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "hardwarestorewithangular"
+  }
+}
