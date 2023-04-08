@@ -1,25 +1,33 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.reducer';
+import * as fromRegister from './register/register-store/register.actions';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthServiceService {
+  isUserCreated: boolean = false;
 
-  constructor(private angularAuth: AngularFireAuth) { }
+  constructor(
+    private angularAuth: AngularFireAuth,
+    private store: Store<AppState>
+  ) {}
 
-  registerUser(userName: string, email:string, password: string){
-    this.angularAuth.createUserWithEmailAndPassword(email,password)
-      .then(response => {
-        //this saves the authentication but i am not going to store this user because is not the porpuse of this exercise
-        //this is just to make sure that the user is being created
-        const user = response.user
-        console.log(user);
-      })
+  registerUser(userName: string, email: string, password: string) {
+    this.angularAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((response) => {
+        const user = response.user;
+        if (user) {
+          this.isUserCreated = true;
+        }
+        this.store.dispatch(
+          new fromRegister.RegisterUserAction(this.isUserCreated)
+        );
+      });
   }
 
-  login(){
-
-  }
+  login() {}
 }

@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { AuthServiceService } from '../auth-service.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducer';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   registerForm: FormGroup = new FormGroup({});
+  registerSubscription: Subscription = new Subscription();
 
-  constructor(private authService: AuthServiceService) {}
+  constructor(private authService: AuthServiceService, private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -20,6 +24,10 @@ export class RegisterComponent implements OnInit {
       password: new FormControl(null, Validators.required),
       repeatedPassword: new FormControl(null, Validators.required),
     });
+  }
+
+  ngOnDestroy(): void {
+    this.registerSubscription.unsubscribe()
   }
 
   onSubmit() {
@@ -34,6 +42,8 @@ export class RegisterComponent implements OnInit {
         title: 'Passwords are not the same',
       });
     }
+
+
     this.authService.registerUser(
       this.registerForm.get('fullName')!.value,
       this.registerForm.get('email')!.value,
@@ -44,5 +54,7 @@ export class RegisterComponent implements OnInit {
       icon: 'success',
       title: 'User Created',
     });
+
+    this.registerForm.reset()
   }
 }
