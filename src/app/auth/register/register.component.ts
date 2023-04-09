@@ -11,9 +11,8 @@ import { Subscription } from 'rxjs';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
-  registerSubscription: Subscription = new Subscription();
 
   constructor(private authService: AuthServiceService, private store: Store<AppState>) {}
 
@@ -24,10 +23,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       password: new FormControl(null, Validators.required),
       repeatedPassword: new FormControl(null, Validators.required),
     });
-  }
-
-  ngOnDestroy(): void {
-    this.registerSubscription.unsubscribe()
   }
 
   onSubmit() {
@@ -52,7 +47,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     Swal.fire({
       icon: 'success',
-      title: 'User Created',
+      title: 'User Created. Now you can Login',
     });
 
     this.registerForm.reset()

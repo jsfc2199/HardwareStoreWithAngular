@@ -17,12 +17,15 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppReducers } from './app.reducer';
+import { ProvidersComponent } from './providers/providers.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProvidersComponent
   ],
   imports: [
     BrowserModule,

@@ -12,12 +12,12 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get('https://hardware-backend-production.up.railway.app/v1/api/all-providers').subscribe(data => {
+   /* this.http.get('https://hardware-backend-production.up.railway.app/v1/api/all-providers').subscribe(data => {
       console.log(data)
-    })
+    })*/
   }
 
-  onClick() {
+  /*onClick() {
     this.http.post('https://hardware-backend-production.up.railway.app/v1/api/saveProvider', {
       "name": "prueba 2",
       "number": "3692581470",
@@ -28,5 +28,5 @@ export class AppComponent implements OnInit {
     })
     console.log('entre a post');
 
-  }
+  }*/
 }
