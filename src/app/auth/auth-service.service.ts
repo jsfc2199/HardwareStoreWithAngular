@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { state } from '@angular/animations';
 
 import Swal from 'sweetalert2';
-import { Auth, getAuth } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, UserCredential, getAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -69,19 +69,28 @@ export class AuthServiceService {
         }
       })
       .catch((error) => {
-        if (error.code === 'auth/user-not-found') {
           Swal.fire({
             icon: 'error',
             title: 'Email or password are incorrect',
           });
-          console.log(error);
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Email or password are incorrect',
-          });
-          console.log(error);
-        }
       });
+  }
+
+  loginWithGoogle(){
+    const provider: GoogleAuthProvider = new GoogleAuthProvider()
+
+    this.angularAuth.signInWithPopup(provider)
+    .then((result) => {
+      if(result.user){
+        this.router.navigate(['/providers']);
+      }else{
+        this.router.navigate(['/login']);
+      }
+    }).catch((error)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went worng while login in with google',
+      });
+    })
   }
 }
