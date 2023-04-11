@@ -35,6 +35,7 @@ import { ProvidersComponent } from './providers/providers.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(()=>initializeApp(environment.firebase)), //this allows to get access to the getAuth
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     StoreModule.forRoot(AppReducers),

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducer';
@@ -6,14 +6,16 @@ import * as fromRegister from './register/register-store/register.actions';
 import { map } from 'rxjs';
 import { Router } from '@angular/router';
 import { state } from '@angular/animations';
-import { getAuth } from '@angular/fire/auth';
+
 import Swal from 'sweetalert2';
+import { Auth, getAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthServiceService {
   isUserCreated: boolean = false;
+  private auth: Auth = inject(Auth)
 
   constructor(
     private angularAuth: AngularFireAuth,
@@ -40,8 +42,7 @@ export class AuthServiceService {
   }
 
   isAuth() {
-    const auth = getAuth();
-    if (auth.currentUser) {
+    if (this.auth.currentUser) {
       return true;
     }
 
