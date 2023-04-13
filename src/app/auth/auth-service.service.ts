@@ -1,14 +1,13 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
 import { AppState } from '../app.reducer';
 import * as fromRegister from './register/register-store/register.actions';
-import { map } from 'rxjs';
-import { Router } from '@angular/router';
-import { state } from '@angular/animations';
 
+import { Auth, GoogleAuthProvider } from '@angular/fire/auth';
 import Swal from 'sweetalert2';
-import { Auth, GoogleAuthProvider, UserCredential, getAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',

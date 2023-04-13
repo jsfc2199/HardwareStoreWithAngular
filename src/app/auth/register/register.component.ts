@@ -1,10 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { AuthServiceService } from '../auth-service.service';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducer';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
 
-  constructor(private authService: AuthServiceService, private store: Store<AppState>) {}
+  constructor(private authService: AuthServiceService) {}
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({

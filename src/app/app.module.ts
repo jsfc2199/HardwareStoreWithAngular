@@ -18,6 +18,11 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppReducers } from './app.reducer';
 import { ProvidersComponent } from './providers/providers.component';
+import { ProvidersFormComponent } from './providers/providers-form/providers-form.component';
+import { ProvidersListComponent } from './providers/providers-list/providers-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EffectsModule } from '@ngrx/effects';
+import { providersEffectsArray } from './providers/providers-store/providers-intex.effects';
 
 
 @NgModule({
@@ -25,7 +30,9 @@ import { ProvidersComponent } from './providers/providers.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ProvidersComponent
+    ProvidersComponent,
+    ProvidersFormComponent,
+    ProvidersListComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +46,9 @@ import { ProvidersComponent } from './providers/providers.component';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     StoreModule.forRoot(AppReducers),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    BrowserAnimationsModule,
+    EffectsModule.forRoot(providersEffectsArray) //always add the effects here
   ],
   providers: [],
   bootstrap: [AppComponent]

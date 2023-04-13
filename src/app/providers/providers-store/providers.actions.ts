@@ -1,0 +1,22 @@
+import { Action } from "@ngrx/store";
+import { Provider } from "src/app/models/providers.model";
+
+export const GET_PROVIDERS = '[Providers] get providers'
+export const LOAD_PROVIDERS = '[Providers] LOAD providers'
+export const GET_PROVIDERS_FAILED = '[Providers] get providers failed'
+
+export class LoadProvidersAction implements Action {
+  readonly type = LOAD_PROVIDERS;
+}
+
+export class GetProvidersAction implements Action {
+  readonly type = GET_PROVIDERS;
+  constructor(public payload: Provider[]){}
+}
+
+export class GetProvidersFailedAction implements Action {
+  readonly type = GET_PROVIDERS_FAILED;
+  constructor(public payload: any){}
+}
+
+export type ProvidersActions = GetProvidersAction | GetProvidersFailedAction | LoadProvidersAction

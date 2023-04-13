@@ -1,0 +1,32 @@
+<div class="m-2">
+  <h1 class="text-success text-center">Providers</h1>
+
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search by Name" (input)="onFilter($event)">
+
+    <span class="input-group-text"><i class="fas fa-search"></i></span>
+  </div>
+
+  <br>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered table-light">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>NUMBER</th>
+          <th>IDENTIFICATION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let provider of filteredProviders; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ provider.name }}</td>
+          <td>{{ provider.number }}</td>
+          <td>{{ provider.passport }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

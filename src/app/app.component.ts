@@ -12,9 +12,7 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-   /* this.http.get('https://hardware-backend-production.up.railway.app/v1/api/all-providers').subscribe(data => {
-      console.log(data)
-    })*/
+
   }
 
   /*onClick() {
