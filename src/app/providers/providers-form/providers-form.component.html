@@ -1,1 +1,28 @@
-<p>providers-form works!</p>
+<form [formGroup]="providerForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-user"></i></span>
+      <input type="text" class="form-control" placeholder="Provider's Name" formControlName="name">
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-phone"></i></span>
+      <input type="text" class="form-control" placeholder="Provider's Phone Number" formControlName="phone">
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+      <input type="text" class="form-control" placeholder="Provider's Identification" formControlName="identification">
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary mb-3">Submit</button>
+    </div>
+  </div>
+</form>

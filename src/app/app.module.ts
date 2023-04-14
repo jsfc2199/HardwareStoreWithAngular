@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -22,7 +22,7 @@ import { ProvidersFormComponent } from './providers/providers-form/providers-for
 import { ProvidersListComponent } from './providers/providers-list/providers-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
-import { providersEffectsArray } from './providers/providers-store/providers-intex.effects';
+import { providersEffectsArray } from './providers/providers-store/providers-index.effects';
 
 
 @NgModule({
@@ -38,6 +38,7 @@ import { providersEffectsArray } from './providers/providers-store/providers-int
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     AngularFirestoreModule,
     AngularFireAuthModule,

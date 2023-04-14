@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.reducer';
 import { Provider } from 'src/app/models/providers.model';
 import * as fromProviders from '../providers-store/providers.actions';
 import { ProvidersState } from '../providers-store/providers.reducer';
+import { ProvidersFormComponent } from '../providers-form/providers-form.component';
 
 @Component({
   selector: 'app-providers-list',
@@ -12,6 +13,10 @@ import { ProvidersState } from '../providers-store/providers.reducer';
   styleUrls: ['./providers-list.component.css'],
 })
 export class ProvidersListComponent {
+
+  //this in order to pay attention to the form modal and reset it when closing it
+  @ViewChild(ProvidersFormComponent) private providersForm!: ProvidersFormComponent;
+
   constructor(
     public store: Store<AppState>
   ) {}
@@ -20,6 +25,12 @@ export class ProvidersListComponent {
   filteredProviders: Provider[] = [];
   providerSubscriptions: Subscription = new Subscription();
   searchTerm: string = '';
+
+  closeModal(){
+    if(this.providersForm.providerForm.dirty){
+      this.providersForm.providerForm.reset()
+    }
+  }
 
   ngOnInit() {
     this.store.select('providers').subscribe((prov: ProvidersState) => {
