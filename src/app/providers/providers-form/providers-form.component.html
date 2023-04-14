@@ -1,28 +1,71 @@
 <form [formGroup]="providerForm" (ngSubmit)="onSubmit()">
-  <div class="mb-3">
+  <span
+  *ngIf="
+    !providerForm.get('name')!.valid &&
+    providerForm.get('name')!.touched
+  "
+  class="form-text"
+  style="color: red"
+  >Please enter a valid Name
+</span>
+  <div class="mb-3"
+  [ngClass]="{
+    'has-error':
+      !providerForm.get('name')!.valid &&
+      providerForm.get('name')!.touched
+  }">
     <div class="input-group">
       <span class="input-group-text"><i class="fas fa-user"></i></span>
       <input type="text" class="form-control" placeholder="Provider's Name" formControlName="name">
     </div>
   </div>
 
-  <div class="mb-3">
+  <span
+  *ngIf="
+    !providerForm.get('phone')!.valid &&
+    providerForm.get('phone')!.touched
+  "
+  class="form-text"
+  style="color: red"
+  >Please enter a valid phone
+</span>
+  <div class="mb-3"
+  [ngClass]="{
+    'has-error':
+      !providerForm.get('phone')!.valid &&
+      providerForm.get('phone')!.touched
+  }">
     <div class="input-group">
       <span class="input-group-text"><i class="fas fa-phone"></i></span>
       <input type="text" class="form-control" placeholder="Provider's Phone Number" formControlName="phone">
     </div>
   </div>
 
-  <div class="mb-3">
+  <span
+  *ngIf="
+    !providerForm.get('identification')!.valid &&
+    providerForm.get('identification')!.touched
+  "
+  class="form-text"
+  style="color: red"
+  >Please enter a valid phone
+</span>
+  <div class="mb-3"
+  [ngClass]="{
+    'has-error':
+      !providerForm.get('identification')!.valid &&
+      providerForm.get('identification')!.touched
+  }">
     <div class="input-group">
       <span class="input-group-text"><i class="fas fa-id-card"></i></span>
       <input type="text" class="form-control" placeholder="Provider's Identification" formControlName="identification">
     </div>
   </div>
 
+
   <div class="mb-3">
     <div class="text-center">
-      <button type="submit" class="btn btn-primary mb-3">Submit</button>
+      <button type="submit" class="btn btn-primary mb-3" data-bs-dismiss="modal" [disabled]="providerForm.invalid">Submit</button>
     </div>
   </div>
 </form>

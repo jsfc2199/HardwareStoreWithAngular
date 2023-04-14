@@ -13,8 +13,8 @@ export class ProvidersFormComponent implements OnInit{
   ngOnInit(): void {
     this.providerForm = new FormGroup({
       name: new FormControl(null, Validators.required),
-      phone: new FormControl(null, [Validators.required, Validators.email]),
-      identification: new FormControl(null, Validators.required),
+      phone: new FormControl(null, [Validators.required, Validators.pattern('^[1-9][0-9]*$')]),
+      identification: new FormControl(null, [Validators.required, Validators.pattern('^[1-9][0-9]*$')]),
     });
   }
 
