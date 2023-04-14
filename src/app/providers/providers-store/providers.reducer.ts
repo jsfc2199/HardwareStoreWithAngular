@@ -35,6 +35,12 @@ export function ProvidersReducer(
           message: action.payload.message
         }
       };
+
+    case fromProviders.ADD_PROVIDER:
+      return {
+        ...state,
+        providers:[...state.providers, action.payload]
+      }
     default:
       return state;
   }

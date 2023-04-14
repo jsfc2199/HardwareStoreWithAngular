@@ -4,6 +4,7 @@ import { Provider } from "src/app/models/providers.model";
 export const GET_PROVIDERS = '[Providers] get providers'
 export const LOAD_PROVIDERS = '[Providers] LOAD providers'
 export const GET_PROVIDERS_FAILED = '[Providers] get providers failed'
+export const ADD_PROVIDER = '[Providers] Add provider'
 
 export class LoadProvidersAction implements Action {
   readonly type = LOAD_PROVIDERS;
@@ -19,4 +20,9 @@ export class GetProvidersFailedAction implements Action {
   constructor(public payload: any){}
 }
 
-export type ProvidersActions = GetProvidersAction | GetProvidersFailedAction | LoadProvidersAction
+export class AddProvidersAction implements Action {
+  readonly type = ADD_PROVIDER;
+  constructor(public payload: Provider){}
+}
+
+export type ProvidersActions = GetProvidersAction | GetProvidersFailedAction | LoadProvidersAction | AddProvidersAction

@@ -1,26 +1,50 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { nanoid } from 'nanoid';
+import { Provider } from 'src/app/models/providers.model';
+import { ProvidersService } from '../providers.service';
+import { AppState } from 'src/app/app.reducer';
+import { Store } from '@ngrx/store';
+import * as fromProviders from '../providers-store/providers.actions'
+import { AddProvidersAction } from '../providers-store/providers.actions';
 
 @Component({
   selector: 'app-providers-form',
   templateUrl: './providers-form.component.html',
-  styleUrls: ['./providers-form.component.css']
+  styleUrls: ['./providers-form.component.css'],
 })
-export class ProvidersFormComponent implements OnInit{
+export class ProvidersFormComponent implements OnInit {
+
+  constructor(private providersService: ProvidersService, private store: Store<AppState>){}
 
   providerForm: FormGroup = new FormGroup({});
 
   ngOnInit(): void {
     this.providerForm = new FormGroup({
       name: new FormControl(null, Validators.required),
-      phone: new FormControl(null, [Validators.required, Validators.pattern('^[1-9][0-9]*$')]),
-      identification: new FormControl(null, [Validators.required, Validators.pattern('^[1-9][0-9]*$')]),
+      phone: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('^[1-9][0-9]*$'),
+      ]),
+      identification: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('^[1-9][0-9]*$'),
+      ]),
     });
   }
 
-  onSubmit(){
-    console.log(this.providerForm.value);
-    this.providerForm.reset()
-  }
+  onSubmit() {
+    const provider = new Provider(
+      nanoid(),
+      this.providerForm.get('name')!.value,
+      this.providerForm.get('phone')!.value,
+      this.providerForm.get('identification')!.value
+    );
 
+    this.providersService.postProvider(provider)
+    this.store.dispatch(new fromProviders.AddProvidersAction(provider));
+
+    console.log(this.providerForm.value);
+    this.providerForm.reset();
+  }
 }
