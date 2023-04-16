@@ -23,6 +23,7 @@ import { ProvidersListComponent } from './providers/providers-list/providers-lis
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { providersEffectsArray } from './providers/providers-store/providers-index.effects';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { providersEffectsArray } from './providers/providers-store/providers-ind
     RegisterComponent,
     ProvidersComponent,
     ProvidersFormComponent,
-    ProvidersListComponent
+    ProvidersListComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

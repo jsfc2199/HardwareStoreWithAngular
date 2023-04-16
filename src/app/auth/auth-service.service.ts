@@ -6,7 +6,7 @@ import { map } from 'rxjs';
 import { AppState } from '../app.reducer';
 import * as fromRegister from './register/register-store/register.actions';
 
-import { Auth, GoogleAuthProvider } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, signOut } from '@angular/fire/auth';
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -14,13 +14,15 @@ import Swal from 'sweetalert2';
 })
 export class AuthServiceService {
   isUserCreated: boolean = false;
-  private auth: Auth = inject(Auth)
+  private auth: Auth = inject(Auth);
 
   constructor(
     private angularAuth: AngularFireAuth,
     private store: Store<AppState>,
     private router: Router
   ) {}
+
+  private urls = ['/providers'];
 
   registerUser(userName: string, email: string, password: string) {
     this.angularAuth
@@ -68,28 +70,46 @@ export class AuthServiceService {
         }
       })
       .catch((error) => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Email or password are incorrect',
-          });
+        Swal.fire({
+          icon: 'error',
+          title: 'Email or password are incorrect',
+        });
       });
   }
 
-  loginWithGoogle(){
-    const provider: GoogleAuthProvider = new GoogleAuthProvider()
+  loginWithGoogle() {
+    const provider: GoogleAuthProvider = new GoogleAuthProvider();
 
-    this.angularAuth.signInWithPopup(provider)
-    .then((result) => {
-      if(result.user){
-        this.router.navigate(['/providers']);
-      }else{
-        this.router.navigate(['/login']);
-      }
-    }).catch((error)=>{
-      Swal.fire({
-        icon: 'error',
-        title: 'Something went worng while login in with google',
+    this.angularAuth
+      .signInWithPopup(provider)
+      .then((result) => {
+        if (result.user) {
+          this.router.navigate(['/providers']);
+        } else {
+          this.router.navigate(['/login']);
+        }
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went worng while login in with google',
+        });
       });
-    })
+  }
+
+  logOut() {
+    const currentUrl = this.router.url;
+    if (this.auth.currentUser || !this.urls.includes(currentUrl)) {
+      signOut(this.auth)
+        .then(() => {
+          this.router.navigate(['/login']);
+        })
+        .catch(() => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Something went worng while login out',
+          });
+        });
+    } 
   }
 }

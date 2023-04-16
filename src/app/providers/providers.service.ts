@@ -15,7 +15,7 @@ export class ProvidersService {
 
   postProvider(postData: Provider) {
     this.http.post('https://hardware-backend-production.up.railway.app/v1/api/saveProvider', postData).subscribe(data=>{
-      console.log(data); //es obligatorio suscribirse en el metodo post para que todos los interesados escuchen por fuera, como un emit
+      console.log(data); //is mandatory to subscribe to this method in order to make everyone interested outside this listen to it, like and "emit"
     })
   }
 }
