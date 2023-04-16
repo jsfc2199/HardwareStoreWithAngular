@@ -22,7 +22,10 @@ export class AuthServiceService {
     private router: Router
   ) {}
 
-  private urls = ['/providers'];
+  private urls = ['/providers', '/products'];
+  getUrls(){
+    return this.urls
+  }
 
   registerUser(userName: string, email: string, password: string) {
     this.angularAuth
@@ -98,8 +101,8 @@ export class AuthServiceService {
   }
 
   logOut() {
-    const currentUrl = this.router.url;
-    if (this.auth.currentUser || !this.urls.includes(currentUrl)) {
+
+    if (this.auth.currentUser) {
       signOut(this.auth)
         .then(() => {
           this.router.navigate(['/login']);
@@ -110,6 +113,6 @@ export class AuthServiceService {
             title: 'Something went worng while login out',
           });
         });
-    } 
+    }
   }
 }

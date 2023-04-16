@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { providersEffectsArray } from './providers/providers-store/providers-index.effects';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ProductsComponent } from './products/products.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     ProvidersComponent,
     ProvidersFormComponent,
     ProvidersListComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
