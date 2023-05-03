@@ -8,6 +8,7 @@ import * as fromRegister from './register/register-store/register.actions';
 
 import { Auth, GoogleAuthProvider, signOut } from '@angular/fire/auth';
 import Swal from 'sweetalert2';
+import { LogOutAction } from './auth.logout.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -45,30 +46,17 @@ export class AuthServiceService {
       .catch((error) => {});
   }
 
-  isAuth() {
-    if (this.auth.currentUser) {
-      return true;
-    }
-
-    return this.store.select('register').pipe(
-      map((state) => {
-        this.isUserCreated = state.isUserCreated;
-        if (this.isUserCreated == false) {
-          this.router.navigate(['/login']);
-        } else {
-          this.router.navigate(['/providers']);
-        }
-        return this.isUserCreated;
-      })
-    );
-  }
-
   login(email: string, password: string) {
     this.angularAuth
       .signInWithEmailAndPassword(email, password)
       .then((userCredentials) => {
         const user = userCredentials.user;
         if (user) {
+          this.isUserCreated = true;
+          this.store.dispatch(
+            new fromRegister.RegisterUserAction(this.isUserCreated)
+          );
+          localStorage.setItem('isUserCreated', 'true')
           this.router.navigate(['/providers']);
         }
       })
@@ -87,6 +75,12 @@ export class AuthServiceService {
       .signInWithPopup(provider)
       .then((result) => {
         if (result.user) {
+          this.isUserCreated = true;
+
+          this.store.dispatch(
+            new fromRegister.RegisterUserAction(this.isUserCreated)
+          );
+          localStorage.setItem('isUserCreated', 'true')
           this.router.navigate(['/providers']);
         } else {
           this.router.navigate(['/login']);
@@ -105,6 +99,9 @@ export class AuthServiceService {
     if (this.auth.currentUser) {
       signOut(this.auth)
         .then(() => {
+          console.log('entra al dispatch');
+          this.store.dispatch(new LogOutAction(false))
+          localStorage.setItem('isUserCreated', 'false')
           this.router.navigate(['/login']);
         })
         .catch(() => {
