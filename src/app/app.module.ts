@@ -25,6 +25,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { providersEffectsArray } from './providers/providers-store/providers-index.effects';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductsListComponent } from './products/products-list/products-list.component';
+import { ProductFormComponent } from './products/product-form/product-form.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { ProductsComponent } from './products/products.component';
     ProvidersFormComponent,
     ProvidersListComponent,
     NavbarComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductsListComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,

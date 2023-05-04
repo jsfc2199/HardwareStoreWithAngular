@@ -99,7 +99,6 @@ export class AuthServiceService {
     if (this.auth.currentUser) {
       signOut(this.auth)
         .then(() => {
-          console.log('entra al dispatch');
           this.store.dispatch(new LogOutAction(false))
           localStorage.setItem('isUserCreated', 'false')
           this.router.navigate(['/login']);

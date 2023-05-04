@@ -27,7 +27,7 @@ export function ProvidersReducer(
         providers: [...action.payload]
       };
     case fromProviders.GET_PROVIDERS_FAILED:
-      console.log('entra en failed providers');
+      
       return {
         ...state,
         error: {
