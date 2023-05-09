@@ -1,6 +1,10 @@
 import { Component, OnInit, Provider } from '@angular/core';
 import { ProductsServiceService } from '../products-service.service';
 import { Product } from 'src/app/models/product.model';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducer';
+import { ProductsState } from '../product-store/products.reducer';
+import * as fromProducts from '../product-store/products.actions'
 
 @Component({
   selector: 'app-products-list',
@@ -9,17 +13,20 @@ import { Product } from 'src/app/models/product.model';
 })
 export class ProductsListComponent implements OnInit{
 
-
-
-  constructor(private productService: ProductsServiceService){}
-
+  constructor(private productService: ProductsServiceService, private store: Store<AppState>){}
 
   productList: Product[] = [];
-  
+  isLoading:boolean =  false;
+  error:any = null
+
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(products => {
-      this.productList = products;
+    this.store.select('products').subscribe((prod: ProductsState)=>{
+      this.productList = prod.products;
+      this.isLoading = prod.isLoading;
+      this.error = prod.error
     })
+    
+    this.store.dispatch(new fromProducts.LoadProductsAction())
   }
 
 

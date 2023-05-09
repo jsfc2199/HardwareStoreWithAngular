@@ -22,11 +22,13 @@ import { ProvidersFormComponent } from './providers/providers-form/providers-for
 import { ProvidersListComponent } from './providers/providers-list/providers-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
-import { providersEffectsArray } from './providers/providers-store/providers-index.effects';
+import { ProvidersEffects, providersEffectsArray } from './providers/providers-store/providers-index.effects';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { ProductFormComponent } from './products/product-form/product-form.component';
+import { ProductsEffects, productsEffectsArray } from './products/product-store/products-index.effects';
+
 
 
 @NgModule({
@@ -57,7 +59,7 @@ import { ProductFormComponent } from './products/product-form/product-form.compo
     StoreModule.forRoot(AppReducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     BrowserAnimationsModule,
-    EffectsModule.forRoot(providersEffectsArray) //always add the effects here
+    EffectsModule.forRoot(ProvidersEffects, ProductsEffects) //always add the effects here
   ],
   providers: [],
   bootstrap: [AppComponent]
