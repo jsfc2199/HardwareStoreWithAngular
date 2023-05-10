@@ -18,10 +18,14 @@ export class ProductsListComponent implements OnInit{
   productList: Product[] = [];
   isLoading:boolean =  false;
   error:any = null
+  selectedProduct: Product | null = null;
 
   ngOnInit(): void {
     this.store.select('products').subscribe((prod: ProductsState)=>{
-      this.productList = prod.products;
+
+      if(prod.products !== undefined){
+        this.productList = prod.products;
+      }
       this.isLoading = prod.isLoading;
       this.error = prod.error
     })
@@ -35,17 +39,14 @@ export class ProductsListComponent implements OnInit{
   }
 
   onDelete(id:string){
-    console.log(id);
-
-
-
     this.store.dispatch(new fromProducts.DeleteProduct(id))
-    this.productService.deleteProduct(id).subscribe(data=>{
-
-    })
   }
 
-  onFilter(filterValue: Event){
 
+  OnSeeDetails(product: Product){
+    if(product !== undefined){
+      this.selectedProduct = product
+    }
   }
+
 }

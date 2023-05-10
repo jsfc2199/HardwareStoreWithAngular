@@ -1,0 +1,44 @@
+<form >
+  <div class="mb-3"  >
+    <label for="" class="fw-bold">Provider Name</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-user"></i></span>
+      <input type="text" class="form-control" placeholder="{{selectedProduct?.provider?.name}}" disabled="disabled">
+    </div>
+  </div>
+
+  <div class="mb-3"  >
+    <label for="" class="fw-bold">Product Description</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-th-list"></i></span>
+      <input type="text" class="form-control" placeholder="{{selectedProduct?.description}}" disabled="disabled">
+    </div>
+  </div>
+
+
+  <div class="mb-3"  >
+    <label for="" class="fw-bold">Product Units Available</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-minus"></i></span>
+      <input type="text" class="form-control" placeholder="{{selectedProduct?.unitsAvailable}}" disabled="disabled">
+    </div>
+  </div>
+
+
+  <div class="mb-3" >
+    <label for="" class="fw-bold">Product Minimum Units Allowed</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-arrow-down"></i></span>
+      <input type="text" class="form-control" placeholder="{{selectedProduct?.minUnits}}" disabled="disabled">
+    </div>
+  </div>
+
+  <div class="mb-3" >
+    <label for="" class="fw-bold">Product Maximum Units Allowed</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-arrow-up"></i></span>
+      <input type="text" class="form-control" placeholder="{{selectedProduct?.maxUnits}}" disabled="disabled" >
+    </div>
+  </div>
+
+</form>

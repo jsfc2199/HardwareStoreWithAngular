@@ -28,6 +28,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { ProductFormComponent } from './products/product-form/product-form.component';
 import { ProductsEffects, productsEffectsArray } from './products/product-store/products-index.effects';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 
 
 
@@ -42,7 +43,8 @@ import { ProductsEffects, productsEffectsArray } from './products/product-store/
     NavbarComponent,
     ProductsComponent,
     ProductsListComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

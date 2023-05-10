@@ -49,6 +49,7 @@
           <th class="align-middle text-center">PRODUCT NAME</th>
           <th class="align-middle text-center">PRICE</th>
           <th class="align-middle text-center">DETAILS</th>
+          <th class="align-middle text-center">TO CART</th>
           <th class="align-middle text-center">EDIT</th>
           <th class="align-middle text-center">DELETE</th>
         </tr>
@@ -59,8 +60,15 @@
           <td class="align-middle text-center">{{i + 1}}</td>
           <td class="align-middle text-center">{{product.productName}}</td>
           <td class="align-middle text-center">{{product.price}}</td>
+
           <td class="align-middle text-center">
-            <button type="button" class="btn btn-success">See Details</button>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#details" (click)="OnSeeDetails(product)">See Details</button>
+          </td>
+
+
+
+          <td class="align-middle text-center">
+            <button type="button" class="btn btn-secondary">Add to Cart</button>
           </td>
           <td class="align-middle text-center">
             <button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button>
@@ -71,5 +79,20 @@
         </tr>
       </tbody>
     </table>
+
+    <div class="modal fade" id="details" data-bs-keyboard="false" tabindex="-1" aria-labelledby="detailsLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailsLabel">Product Details</h5>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()">X</button>
+          </div>
+          <div class="modal-body">
+            <app-product-detail [selectedProduct] = "selectedProduct"></app-product-detail>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
