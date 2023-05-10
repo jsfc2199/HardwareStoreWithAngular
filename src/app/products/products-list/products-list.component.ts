@@ -25,13 +25,24 @@ export class ProductsListComponent implements OnInit{
       this.isLoading = prod.isLoading;
       this.error = prod.error
     })
-    
+
     this.store.dispatch(new fromProducts.LoadProductsAction())
   }
 
 
   closeModal(){
 
+  }
+
+  onDelete(id:string){
+    console.log(id);
+
+
+
+    this.store.dispatch(new fromProducts.DeleteProduct(id))
+    this.productService.deleteProduct(id).subscribe(data=>{
+
+    })
   }
 
   onFilter(filterValue: Event){

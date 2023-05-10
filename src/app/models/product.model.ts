@@ -1,7 +1,9 @@
 import { Provider } from "./providers.model"
 
 export class Product{
-  constructor(public minUnits: number,
+  constructor(
+    public id: string,
+    public minUnits: number,
     public maxUnits: number,
     public productName: string,
     public description: string,

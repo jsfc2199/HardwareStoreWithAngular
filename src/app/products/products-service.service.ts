@@ -12,4 +12,8 @@ export class ProductsServiceService {
   getProducts() {
     return this.http.get<Product[]>('https://hardware-backend-production.up.railway.app/v1/api/all-products')
   }
+
+  deleteProduct(id:string){
+    return this.http.delete(`https://hardware-backend-production.up.railway.app/api/v1/delete-product/${id}`)
+  }
 }

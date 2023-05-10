@@ -38,6 +38,24 @@ export function ProductsReducer(state = initialState, action: fromProducts.Produ
           message: action.payload.message
         }
       }
+    case fromProducts.DELETE_PRODUCT:
+      return {
+        ...state,
+      }
+    case fromProducts.DELETE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        products: state.products.filter((product) => product.id !== action.payload),
+      };
+    case fromProducts.DELETE_PRODUCT_FAILED:
+      console.error('Failed to delete product:', action.payload);
+      return {
+        ...state,
+        error:{
+          status: action.payload.status,
+          message: action.payload.message
+        }
+      };
     default:
       return state
   }
