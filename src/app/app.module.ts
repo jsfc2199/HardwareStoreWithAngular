@@ -29,8 +29,7 @@ import { ProductsListComponent } from './products/products-list/products-list.co
 import { ProductFormComponent } from './products/product-form/product-form.component';
 import { ProductsEffects, productsEffectsArray } from './products/product-store/products-index.effects';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
-
-
+import { ProductEditingComponent } from './products/product-editing/product-editing.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +43,9 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
     ProductsComponent,
     ProductsListComponent,
     ProductFormComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductEditingComponent
+
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,11 @@
-import { Component, OnInit, Provider } from '@angular/core';
+import { Component, OnInit, Provider, ViewChild } from '@angular/core';
 import { ProductsServiceService } from '../products-service.service';
 import { Product } from 'src/app/models/product.model';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { ProductsState } from '../product-store/products.reducer';
 import * as fromProducts from '../product-store/products.actions'
+import { ProductEditingComponent } from '../product-editing/product-editing.component';
 
 @Component({
   selector: 'app-products-list',
@@ -12,6 +13,8 @@ import * as fromProducts from '../product-store/products.actions'
   styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent implements OnInit{
+
+  @ViewChild(ProductEditingComponent) private editingForm!: ProductEditingComponent
 
   constructor(private productService: ProductsServiceService, private store: Store<AppState>){}
 
@@ -35,7 +38,9 @@ export class ProductsListComponent implements OnInit{
 
 
   closeModal(){
-
+    if(this.editingForm.productToEditForm.dirty){
+      this.editingForm.productToEditForm.reset()
+    }
   }
 
   onDelete(id:string){

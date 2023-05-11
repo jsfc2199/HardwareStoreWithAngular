@@ -1,0 +1,210 @@
+<form [formGroup]="productToEditForm" (ngSubmit)="onSubmit()">
+  <span
+    *ngIf="
+      !productToEditForm.get('productName')!.valid &&
+      productToEditForm.get('productName')!.touched
+    "
+    class="form-text"
+    style="color: red"
+    >Please enter a valid Name
+  </span>
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'has-error':
+        !productToEditForm.get('productName')!.valid &&
+        productToEditForm.get('productName')!.touched
+    }"
+  >
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-user"></i></span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Product Name"
+        formControlName="productName"
+      />
+    </div>
+  </div>
+
+  <span
+    *ngIf="
+      !productToEditForm.get('description')!.valid &&
+      productToEditForm.get('description')!.touched
+    "
+    class="form-text"
+    style="color: red"
+    >Please enter a valid description
+  </span>
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'has-error':
+        !productToEditForm.get('description')!.valid &&
+        productToEditForm.get('description')!.touched
+    }"
+  >
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-th-list"></i></span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Product Description"
+        formControlName="description"
+      />
+    </div>
+  </div>
+
+  <span
+    *ngIf="
+      !productToEditForm.get('price')!.valid &&
+      productToEditForm.get('price')!.touched
+    "
+    class="form-text"
+    style="color: red"
+    >Please enter a valid price
+  </span>
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'has-error':
+        !productToEditForm.get('price')!.valid &&
+        productToEditForm.get('price')!.touched
+    }"
+  >
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-money-bill"></i></span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Product Price"
+        formControlName="price"
+      />
+    </div>
+  </div>
+
+  <span
+    *ngIf="
+      !productToEditForm.get('unitsAvailable')!.valid &&
+      productToEditForm.get('unitsAvailable')!.touched
+    "
+    class="form-text"
+    style="color: red"
+    >Please enter a valid units
+  </span>
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'has-error':
+        !productToEditForm.get('unitsAvailable')!.valid &&
+        productToEditForm.get('unitsAvailable')!.touched
+    }"
+  >
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-minus"></i></span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Product Units Available"
+        formControlName="unitsAvailable"
+      />
+    </div>
+  </div>
+
+  <span
+    *ngIf="
+      !productToEditForm.get('minUnits')!.valid &&
+      productToEditForm.get('minUnits')!.touched
+    "
+    class="form-text"
+    style="color: red"
+    >Please enter a valid units
+  </span>
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'has-error':
+        !productToEditForm.get('minUnits')!.valid &&
+        productToEditForm.get('minUnits')!.touched
+    }"
+  >
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-arrow-down"></i></span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Product Minimum Units Allowed"
+        formControlName="minUnits"
+      />
+    </div>
+  </div>
+
+  <span
+    *ngIf="
+      !productToEditForm.get('maxUnits')!.valid &&
+      productToEditForm.get('maxUnits')!.touched
+    "
+    class="form-text"
+    style="color: red"
+    >Please enter a valid units
+  </span>
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'has-error':
+        !productToEditForm.get('maxUnits')!.valid &&
+        productToEditForm.get('maxUnits')!.touched
+    }"
+  >
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-arrow-up"></i></span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Product Maximum Units Allowed"
+        formControlName="maxUnits"
+      />
+    </div>
+  </div>
+
+  <span
+    *ngIf="
+      !productToEditForm.get('provider')!.valid &&
+      productToEditForm.get('provider')!.touched
+    "
+    class="form-text"
+    style="color: red"
+    >Please select a provider
+  </span>
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'has-error':
+        !productToEditForm.get('provider')!.valid &&
+        productToEditForm.get('provider')!.touched
+    }"
+  >
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-user"></i></span>
+      <select class="form-select" formControlName="provider">
+        <option value="" disabled>Select a provider</option>
+        <option value="{{ prov.name }}" *ngFor="let prov of currentProviders">
+          {{ prov.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="text-center">
+      <button
+        type="submit"
+        class="btn btn-primary mb-3"
+        data-bs-dismiss="modal"
+        [disabled]="productToEditForm.invalid"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</form>
