@@ -30,6 +30,7 @@ import { ProductFormComponent } from './products/product-form/product-form.compo
 import { ProductsEffects, productsEffectsArray } from './products/product-store/products-index.effects';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ProductEditingComponent } from './products/product-editing/product-editing.component';
+import { ShopCartComponent } from './shop-cart/shop-cart.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ProductEditingComponent } from './products/product-editing/product-edit
     ProductsListComponent,
     ProductFormComponent,
     ProductDetailComponent,
-    ProductEditingComponent
+    ProductEditingComponent,
+    ShopCartComponent
 
   ],
   imports: [

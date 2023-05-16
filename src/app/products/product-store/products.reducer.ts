@@ -89,7 +89,7 @@ export function ProductsReducer(
         ...state,
         products: updatedProducts,
       };
-      
+
     default:
       return state;
   }
