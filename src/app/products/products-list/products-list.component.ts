@@ -38,9 +38,8 @@ export class ProductsListComponent implements OnInit{
 
 
   closeModal(){
-    if(this.editingForm.productToEditForm.dirty){
-      this.editingForm.productToEditForm.reset()
-    }
+      this.editingForm.productToEditForm.reset();
+      this.editingForm.productToEditForm.get('provider')?.setValue('');
   }
 
   onDelete(id:string){

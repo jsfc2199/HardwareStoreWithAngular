@@ -188,7 +188,7 @@
       <span class="input-group-text"><i class="fas fa-user"></i></span>
       <select class="form-select" formControlName="provider">
         <option value="" disabled>Select a provider</option>
-        <option value="{{ prov.name }}" *ngFor="let prov of currentProviders">
+        <option [ngValue]="prov" *ngFor="let prov of currentProviders">
           {{ prov.name }}
         </option>
       </select>
