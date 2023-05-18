@@ -49,6 +49,7 @@
           <th class="align-middle text-center">PRODUCT NAME</th>
           <th class="align-middle text-center">PRICE</th>
           <th class="align-middle text-center">DETAILS</th>
+          <th class="align-middle text-center">BUY ITEMS</th>
           <th class="align-middle text-center">TO CART</th>
           <th class="align-middle text-center">EDIT</th>
           <th class="align-middle text-center">DELETE</th>
@@ -59,16 +60,20 @@
         <tr *ngFor="let product of productList; let i = index">
           <td class="align-middle text-center">{{i + 1}}</td>
           <td class="align-middle text-center">{{product.productName}}</td>
-          <td class="align-middle text-center">{{product.price}}</td>
+          <td class="align-middle text-center">{{product.price | currency}}</td>
 
           <td class="align-middle text-center">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#details" (click)="OnSeeDetails(product)">See Details</button>
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#details" (click)="OnSeeDetails(product)">See Details</button>
+          </td>
+
+          <td class="align-middle text-center">
+            <button type="button" class="btn btn-success">Buy Items</button>
           </td>
 
 
-
           <td class="align-middle text-center">
-            <button type="button" class="btn btn-secondary">Add to Cart</button>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addToCart"
+            (click)="OnSeeDetails(product)" [disabled] = "product.unitsAvailable < product.minUnits">Add to Cart</button>
           </td>
 
           <td class="align-middle text-center">
@@ -105,6 +110,20 @@
           </div>
           <div class="modal-body">
             <app-product-editing [selectedProduct] = "selectedProduct"></app-product-editing>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="addToCart" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addToCartLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addToCartLabel">Add To Cart</h5>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close" (click)="closeAddToCartModal()">X</button>
+          </div>
+          <div class="modal-body">
+            <app-product-to-shop [selectedProduct] = "selectedProduct"></app-product-to-shop>
           </div>
         </div>
       </div>

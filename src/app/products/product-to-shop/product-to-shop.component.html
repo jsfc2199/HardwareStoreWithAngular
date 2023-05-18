@@ -1,0 +1,47 @@
+<form [formGroup]="productToAdd" (ngSubmit)="onSubmit()">
+  <section class="h-100" style="background-color: white;">
+    <div class="container h-100 py-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6">
+
+          <div class="card rounded-3 mb-4">
+            <div class="card-body p-4">
+              <div class="text-center">
+                <h5 class="mb-3">{{selectedProduct?.productName}}</h5>
+                <p class="text-muted">Description: {{selectedProduct?.description}}</p>
+                <p class="text-muted">Price: {{selectedProduct?.price | currency}}</p>
+                <p class="text-muted">Stock: {{selectedProduct?.unitsAvailable}} units available</p>
+              </div>
+              <div class="d-flex justify-content-center align-items-center mt-4">
+                <button class="btn btn-link px-2" (click)="decrementQuantity()" type="button">
+                  <i class="fas fa-minus"></i>
+                </button>
+
+                <input style="text-align: center;" min="0" id="counter" name="quantity"
+                  [value]="productToAdd.get('amount')!.value" value="0" type="number"
+                  class="form-control form-control-sm" formControlName="amount" />
+
+                <button class="btn btn-link px-2" (click)="incrementQuantity()" type="button">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+              <div class="text-center mt-4">
+                <h5 class="mb-0">{{calculateTotal() | currency}}</h5>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mb-3">
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary mb-3" data-bs-dismiss="modal"
+        [disabled]="productToAdd.get('amount')!.value == 0">
+        Submit
+      </button>
+    </div>
+  </div>
+</form>
