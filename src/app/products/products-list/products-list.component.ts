@@ -8,62 +8,84 @@ import * as fromProducts from '../product-store/products.actions'
 import { ProductEditingComponent } from '../product-editing/product-editing.component';
 import { ProductToShopComponent } from '../product-to-shop/product-to-shop.component';
 import { ProductFormComponent } from '../product-form/product-form.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit{
+export class ProductsListComponent implements OnInit {
 
   @ViewChild(ProductEditingComponent) private editingForm!: ProductEditingComponent
   @ViewChild(ProductToShopComponent) private productToAddForm!: ProductToShopComponent
   @ViewChild(ProductFormComponent) private productToAddInProducts!: ProductFormComponent
 
-  constructor(private productService: ProductsServiceService, private store: Store<AppState>){}
+  constructor(private productService: ProductsServiceService, private store: Store<AppState>) { }
 
   productList: Product[] = [];
-  isLoading:boolean =  false;
-  error:any = null
+  isLoading: boolean = false;
+  error: any = null
   selectedProduct: Product | null = null;
 
   ngOnInit(): void {
-    this.store.select('products').subscribe((prod: ProductsState)=>{
+    this.store.select('products').subscribe((prod: ProductsState) => {
 
-      if(prod.products !== undefined){
+      if (prod.products !== undefined) {
         this.productList = prod.products;
+
       }
       this.isLoading = prod.isLoading;
       this.error = prod.error
+
+      this.checkDisabledButtons()
+
+
     })
 
     this.store.dispatch(new fromProducts.LoadProductsAction())
   }
+  private swalDisplayed = false;
+  private checkDisabledButtons() {
 
+    const isAnyButtonDisabled = this.productList.some((product) => {
+      return product.unitsAvailable < product.minUnits
+    })
 
-  closeModal(){
-      this.editingForm.productToEditForm.reset();
-      this.editingForm.productToEditForm.get('provider')?.setValue('');
+    if (isAnyButtonDisabled && !this.swalDisplayed) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'Some add to cart buttons are disabled. It means it is necesarry to buy more items'
+      });
+
+      this.swalDisplayed = true
+    }
   }
 
-  closeAddToCartModal(){
+  closeModal() {
+    this.editingForm.productToEditForm.reset();
+    this.editingForm.productToEditForm.get('provider')?.setValue('');
+  }
+
+  closeAddToCartModal() {
     this.productToAddForm.productToAdd.reset()
     this.productToAddForm.productToAdd.get('amount')?.setValue(0);
   }
 
 
-  closeModalProductComponent(){
+  closeModalProductComponent() {
     this.productToAddInProducts.productToAddForm.reset();
     this.productToAddInProducts.productToAddForm.get('provider')?.setValue('');
-}
+  }
 
-  onDelete(id:string){
+  onDelete(id: string) {
     this.store.dispatch(new fromProducts.DeleteProduct(id))
   }
 
 
-  OnSeeDetails(product: Product){
-    if(product !== undefined){
+  OnSeeDetails(product: Product) {
+    if (product !== undefined) {
       this.selectedProduct = product
     }
   }
