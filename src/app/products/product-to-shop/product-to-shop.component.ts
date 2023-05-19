@@ -36,17 +36,6 @@ export class ProductToShopComponent implements OnInit {
   }
 
   onSubmit() {
-    //console.log(this.total,'value')
-    //console.log(this.totalProductsOfAnItem,'items');
-
-    /*if(this.selectedProduct == undefined){
-      Swal.fire({
-        icon:'error',
-        title: 'Opps...',
-        text: 'Sorry, but something went wrong that we can not handle, please try again later :c'
-      })
-    }*/
-
     //add validations related to the min and make the rest between units available and the totalProductsOfAnItem
     const newUnitsAvailable =
       this.selectedProduct!.unitsAvailable - this.totalProductsOfAnItem;

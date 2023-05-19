@@ -67,7 +67,8 @@
           </td>
 
           <td class="align-middle text-center">
-            <button type="button" class="btn btn-success">Buy Items</button>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#buyItems"
+            [disabled] = "product.unitsAvailable > product.minUnits" (click)="OnSeeDetails(product)">Buy Items</button>
           </td>
 
 
@@ -124,6 +125,20 @@
           </div>
           <div class="modal-body">
             <app-product-to-shop [selectedProduct] = "selectedProduct"></app-product-to-shop>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="buyItems" data-bs-keyboard="false" tabindex="-1" aria-labelledby="buyItemsLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="buyItemsLabel">Buy Items</h5>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close" (click)="closeBuyProducts()">X</button>
+          </div>
+          <div class="modal-body">
+            <app-buy-items [selectedProduct] = "selectedProduct"></app-buy-items>
           </div>
         </div>
       </div>

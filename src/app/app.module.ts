@@ -32,6 +32,7 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
 import { ProductEditingComponent } from './products/product-editing/product-editing.component';
 import { ShopCartComponent } from './shop-cart/shop-cart.component';
 import { ProductToShopComponent } from './products/product-to-shop/product-to-shop.component';
+import { BuyItemsComponent } from './products/buy-items/buy-items.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { ProductToShopComponent } from './products/product-to-shop/product-to-sh
     ProductDetailComponent,
     ProductEditingComponent,
     ShopCartComponent,
-    ProductToShopComponent
+    ProductToShopComponent,
+    BuyItemsComponent
   ],
   imports: [
     BrowserModule,

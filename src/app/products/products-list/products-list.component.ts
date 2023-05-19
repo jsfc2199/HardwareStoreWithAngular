@@ -9,6 +9,7 @@ import { ProductEditingComponent } from '../product-editing/product-editing.comp
 import { ProductToShopComponent } from '../product-to-shop/product-to-shop.component';
 import { ProductFormComponent } from '../product-form/product-form.component';
 import Swal from 'sweetalert2';
+import { BuyItemsComponent } from '../buy-items/buy-items.component';
 
 @Component({
   selector: 'app-products-list',
@@ -20,6 +21,7 @@ export class ProductsListComponent implements OnInit {
   @ViewChild(ProductEditingComponent) private editingForm!: ProductEditingComponent
   @ViewChild(ProductToShopComponent) private productToAddForm!: ProductToShopComponent
   @ViewChild(ProductFormComponent) private productToAddInProducts!: ProductFormComponent
+  @ViewChild(BuyItemsComponent) private buyProductItems!: BuyItemsComponent
 
   constructor(private productService: ProductsServiceService, private store: Store<AppState>) { }
 
@@ -66,6 +68,11 @@ export class ProductsListComponent implements OnInit {
   closeModal() {
     this.editingForm.productToEditForm.reset();
     this.editingForm.productToEditForm.get('provider')?.setValue('');
+  }
+
+  closeBuyProducts() {
+    this.buyProductItems.productToBuy.reset();
+    this.buyProductItems.productToBuy.get('quantity')?.setValue(0);
   }
 
   closeAddToCartModal() {
