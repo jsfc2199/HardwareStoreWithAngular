@@ -7,6 +7,7 @@ export const DELETE_PRODUCT = '[Products] delete product'
 export const DELETE_PRODUCT_SUCCESS = '[Products] Delete Product Success';
 export const DELETE_PRODUCT_FAILED = '[Products] Delete Product Failed';
 export const UPDATE_PRODUCT = '[Products] Update Product';
+export const ADD_PRODUCT = '[Products] Add product'
 
 export class LoadProductsAction implements Action {
   readonly type = LOAD_PRODUCTS
@@ -42,6 +43,11 @@ export class UpdateProduct implements Action {
   constructor(public payload: Product) { }
 }
 
+export class AddProductsAction implements Action {
+  readonly type = ADD_PRODUCT;
+  constructor(public payload: Product){}
+}
+
 export type ProductsActions =
                 LoadProductsAction         |
                 GetProductsAction          |
@@ -49,4 +55,5 @@ export type ProductsActions =
                 DeleteProduct              |
                 DeleteProductSuccess       |
                 DeleteProductFailed        |
-                UpdateProduct
+                UpdateProduct              |
+                AddProductsAction

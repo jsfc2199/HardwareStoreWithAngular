@@ -21,4 +21,8 @@ export class ProductsServiceService {
   UpdateProduct(product:Product){
     return this.http.put('https://hardware-backend-production.up.railway.app/v1/api/update-product', product)
   }
+
+  postProdiver(postData: Product){
+    this.http.post('https://hardware-backend-production.up.railway.app/v1/api/save-product',postData).subscribe()
+  }
 }

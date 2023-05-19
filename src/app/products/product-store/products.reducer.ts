@@ -89,7 +89,11 @@ export function ProductsReducer(
         ...state,
         products: updatedProducts,
       };
-
+    case fromProducts.ADD_PRODUCT:
+      return {
+        ...state,
+        products: [...state.products, action.payload]
+      }
     default:
       return state;
   }

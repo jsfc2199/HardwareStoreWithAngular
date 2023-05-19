@@ -27,9 +27,10 @@ export class ProductEditingComponent implements OnInit, OnDestroy {
   productToEditForm: FormGroup = new FormGroup({});
   currentProviders: Provider[] = [];
   updateSubscription: Subscription = new Subscription();
+  provSubscription: Subscription = new Subscription();
 
   ngOnInit(): void {
-    this.store.select('providers').subscribe((prov: ProvidersState) => {
+    this.provSubscription = this.store.select('providers').subscribe((prov: ProvidersState) => {
       this.currentProviders = prov.providers;
     });
 
@@ -109,5 +110,6 @@ export class ProductEditingComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.updateSubscription.unsubscribe();
+    this.provSubscription.unsubscribe();
   }
 }

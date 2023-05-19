@@ -20,10 +20,13 @@ export class ShopCartComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.cartSubscription = this.store.select('shopCart').subscribe(shopCart => {
       this.productsInCart = shopCart.products
-      console.log(this.productsInCart)
     })
 
      this.updateCartTotals()
+  }
+
+  onSubmit() {
+    
   }
 
   ngOnDestroy(): void {

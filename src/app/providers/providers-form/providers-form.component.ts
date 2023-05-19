@@ -44,7 +44,6 @@ export class ProvidersFormComponent implements OnInit {
     this.providersService.postProvider(provider)
     this.store.dispatch(new fromProviders.AddProvidersAction(provider));
 
-    console.log(this.providerForm.value);
     this.providerForm.reset();
   }
 }

@@ -7,6 +7,7 @@ import { ProductsState } from '../product-store/products.reducer';
 import * as fromProducts from '../product-store/products.actions'
 import { ProductEditingComponent } from '../product-editing/product-editing.component';
 import { ProductToShopComponent } from '../product-to-shop/product-to-shop.component';
+import { ProductFormComponent } from '../product-form/product-form.component';
 
 @Component({
   selector: 'app-products-list',
@@ -17,6 +18,7 @@ export class ProductsListComponent implements OnInit{
 
   @ViewChild(ProductEditingComponent) private editingForm!: ProductEditingComponent
   @ViewChild(ProductToShopComponent) private productToAddForm!: ProductToShopComponent
+  @ViewChild(ProductFormComponent) private productToAddInProducts!: ProductFormComponent
 
   constructor(private productService: ProductsServiceService, private store: Store<AppState>){}
 
@@ -48,6 +50,12 @@ export class ProductsListComponent implements OnInit{
     this.productToAddForm.productToAdd.reset()
     this.productToAddForm.productToAdd.get('amount')?.setValue(0);
   }
+
+
+  closeModalProductComponent(){
+    this.productToAddInProducts.productToAddForm.reset();
+    this.productToAddInProducts.productToAddForm.get('provider')?.setValue('');
+}
 
   onDelete(id:string){
     this.store.dispatch(new fromProducts.DeleteProduct(id))
