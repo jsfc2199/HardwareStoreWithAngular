@@ -6,10 +6,9 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable, map, take } from 'rxjs';
-import { AuthServiceService } from './auth-service.service';
-import { AppState } from '../app.reducer';
 import { Store } from '@ngrx/store';
+import { Observable, map, take } from 'rxjs';
+import { AppState } from '../app.reducer';
 import { RegisterUserAction } from './register/register-store/register.actions';
 
 @Injectable({
@@ -18,7 +17,6 @@ import { RegisterUserAction } from './register/register-store/register.actions';
 export class AuthGuardGuard implements CanActivate {
   constructor(
     private route: Router,
-    private authService: AuthServiceService,
     private store: Store<AppState>
   ) {}
 
@@ -33,7 +31,7 @@ export class AuthGuardGuard implements CanActivate {
     return this.store.select('register').pipe(
       take(1),
       map(() => {
-        if (localStorage.getItem('isUserCreated') === 'true') {     
+        if (localStorage.getItem('isUserCreated') === 'true') {
           this.store.subscribe(authState =>{
             if(authState.register.isUserCreated){
               return

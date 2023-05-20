@@ -1,7 +1,6 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -22,12 +21,10 @@ import { ProvidersFormComponent } from './providers/providers-form/providers-for
 import { ProvidersListComponent } from './providers/providers-list/providers-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
-import { ProvidersEffects, providersEffectsArray } from './providers/providers-store/providers-index.effects';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { ProductFormComponent } from './products/product-form/product-form.component';
-import { ProductsEffects, productsEffectsArray } from './products/product-store/products-index.effects';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ProductEditingComponent } from './products/product-editing/product-editing.component';
 import { ShopCartComponent } from './shop-cart/shop-cart.component';
@@ -36,6 +33,8 @@ import { BuyItemsComponent } from './products/buy-items/buy-items.component';
 import { ReceiptComponent } from './receipt/receipt.component';
 import { ReceiptListComponent } from './receipt/receipt-list/receipt-list.component';
 import { ReceiptEffects } from './receipt/receipt-store/receipt.effects';
+import { ProductsEffects } from './products/product-store/products.effect';
+import { ProvidersEffects } from './providers/providers-store/providers.effects';
 
 
 @NgModule({

@@ -1,15 +1,15 @@
-import { Component, OnInit, Provider, ViewChild } from '@angular/core';
-import { ProductsServiceService } from '../products-service.service';
-import { Product } from 'src/app/models/product.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
-import { ProductsState } from '../product-store/products.reducer';
-import * as fromProducts from '../product-store/products.actions'
-import { ProductEditingComponent } from '../product-editing/product-editing.component';
-import { ProductToShopComponent } from '../product-to-shop/product-to-shop.component';
-import { ProductFormComponent } from '../product-form/product-form.component';
+import { Product } from 'src/app/models/product.model';
 import Swal from 'sweetalert2';
 import { BuyItemsComponent } from '../buy-items/buy-items.component';
+import { ProductEditingComponent } from '../product-editing/product-editing.component';
+import { ProductFormComponent } from '../product-form/product-form.component';
+import * as fromProducts from '../product-store/products.actions';
+import { ProductsState } from '../product-store/products.reducer';
+import { ProductToShopComponent } from '../product-to-shop/product-to-shop.component';
+import { ProductsServiceService } from '../products-service.service';
 
 @Component({
   selector: 'app-products-list',

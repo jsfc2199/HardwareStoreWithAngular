@@ -18,9 +18,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onLogin() {
-    //console.log(this.loginForm.value);
-
+  onLogin() {  
     if (this.loginForm.valid) {
       this.authService.login(
         this.loginForm.get('email')!.value,

@@ -2,7 +2,6 @@ import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map } from 'rxjs';
 import { AppState } from '../app.reducer';
 import * as fromRegister from './register/register-store/register.actions';
 

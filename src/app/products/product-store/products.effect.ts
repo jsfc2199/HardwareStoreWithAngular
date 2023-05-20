@@ -1,10 +1,9 @@
-import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { ProductsServiceService } from "../products-service.service";
 import { Injectable } from "@angular/core";
-import * as fromProducts from './products.actions'
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, exhaustMap, map, mergeMap, of } from "rxjs";
 import { Product } from "src/app/models/product.model";
-import { Action } from '@ngrx/store';
+import { ProductsServiceService } from "../products-service.service";
+import * as fromProducts from './products.actions';
 
 @Injectable()
 export class ProductsEffects{

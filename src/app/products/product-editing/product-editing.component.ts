@@ -1,16 +1,15 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Product } from 'src/app/models/product.model';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.reducer';
-import { ProvidersState } from 'src/app/providers/providers-store/providers.reducer';
+import { Product } from 'src/app/models/product.model';
 import { Provider } from 'src/app/models/providers.model';
+import { ProvidersState } from 'src/app/providers/providers-store/providers.reducer';
+import Swal from 'sweetalert2';
 import * as fromProviders from '../../providers/providers-store/providers.actions';
 import * as fromProducts from '../product-store/products.actions';
-import { nanoid } from 'nanoid';
-import Swal from 'sweetalert2';
 import { ProductsServiceService } from '../products-service.service';
-import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-product-editing',
   templateUrl: './product-editing.component.html',

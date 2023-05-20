@@ -1,15 +1,15 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { nanoid } from 'nanoid';
+import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.reducer';
 import { CartItem } from 'src/app/models/inCart.model';
 import { Product } from 'src/app/models/product.model';
 import Swal from 'sweetalert2';
-import { ProductsServiceService } from '../products-service.service';
-import * as fromProducts from '../product-store/products.actions';
-import { Subscription } from 'rxjs';
 import * as fromCart from '../../shop-cart/shop-store/shop.actions';
+import * as fromProducts from '../product-store/products.actions';
+import { ProductsServiceService } from '../products-service.service';
 
 @Component({
   selector: 'app-product-to-shop',

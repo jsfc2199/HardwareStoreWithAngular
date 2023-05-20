@@ -41,5 +41,12 @@ export function ReceiptsReducer(
           message: action.payload.message,
         },
       };
+    case fromReceipts.ADD_RECEIPTS:
+      return {
+        ...state,
+        receipts:[...state.receipts, action.payload]
+      }
+    default:
+      return state;
   }
 }

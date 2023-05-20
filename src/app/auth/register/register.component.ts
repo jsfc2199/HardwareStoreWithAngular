@@ -23,7 +23,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.registerForm);
 
     if (
       this.registerForm.get('password')!.value !=
@@ -34,7 +33,6 @@ export class RegisterComponent implements OnInit {
         title: 'Passwords are not the same',
       });
     }
-
 
     this.authService.registerUser(
       this.registerForm.get('fullName')!.value,

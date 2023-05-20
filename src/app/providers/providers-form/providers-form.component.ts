@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { nanoid } from 'nanoid';
-import { Provider } from 'src/app/models/providers.model';
-import { ProvidersService } from '../providers.service';
-import { AppState } from 'src/app/app.reducer';
 import { Store } from '@ngrx/store';
-import * as fromProviders from '../providers-store/providers.actions'
-import { AddProvidersAction } from '../providers-store/providers.actions';
+import { nanoid } from 'nanoid';
+import { AppState } from 'src/app/app.reducer';
+import { Provider } from 'src/app/models/providers.model';
+import * as fromProviders from '../providers-store/providers.actions';
+import { ProvidersService } from '../providers.service';
 
 @Component({
   selector: 'app-providers-form',
