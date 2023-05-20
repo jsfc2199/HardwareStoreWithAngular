@@ -4,6 +4,7 @@ import * as fromProviders from './providers/providers-store/providers.reducer'
 import * as fromLogout from './auth/auth.logout.reducer';
 import * as fromProducts from './products/product-store/products.reducer'
 import * as fromCart from './shop-cart/shop-store/shop.reducer'
+import * as fromReceipts from './receipt/receipt-store/receipt.reducer'
 
 
 export interface AppState{
@@ -12,6 +13,7 @@ export interface AppState{
   logout: fromLogout.LogoutState,
   products: fromProducts.ProductsState,
   shopCart: fromCart.CartState
+  receipts: fromReceipts.ReceiptsState
  }
 
  export const AppReducers: ActionReducerMap<AppState, any> ={
@@ -19,5 +21,6 @@ export interface AppState{
    providers: fromProviders.ProvidersReducer,
    logout: fromLogout.AuthReducerLogout,
    products: fromProducts.ProductsReducer,
-   shopCart: fromCart.CartReducer
+   shopCart: fromCart.CartReducer,
+   receipts: fromReceipts.ReceiptsReducer
  }

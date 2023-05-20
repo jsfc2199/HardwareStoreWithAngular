@@ -33,6 +33,9 @@ import { ProductEditingComponent } from './products/product-editing/product-edit
 import { ShopCartComponent } from './shop-cart/shop-cart.component';
 import { ProductToShopComponent } from './products/product-to-shop/product-to-shop.component';
 import { BuyItemsComponent } from './products/buy-items/buy-items.component';
+import { ReceiptComponent } from './receipt/receipt.component';
+import { ReceiptListComponent } from './receipt/receipt-list/receipt-list.component';
+import { ReceiptEffects } from './receipt/receipt-store/receipt.effects';
 
 
 @NgModule({
@@ -51,7 +54,9 @@ import { BuyItemsComponent } from './products/buy-items/buy-items.component';
     ProductEditingComponent,
     ShopCartComponent,
     ProductToShopComponent,
-    BuyItemsComponent
+    BuyItemsComponent,
+    ReceiptComponent,
+    ReceiptListComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +73,7 @@ import { BuyItemsComponent } from './products/buy-items/buy-items.component';
     StoreModule.forRoot(AppReducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     BrowserAnimationsModule,
-    EffectsModule.forRoot(ProvidersEffects, ProductsEffects) //always add the effects here
+    EffectsModule.forRoot(ProvidersEffects, ProductsEffects, ReceiptEffects) //always add the effects here
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ import { ProvidersComponent } from './providers/providers.component';
 import { AuthGuardGuard } from './auth/auth-guard.guard';
 import { ProductsComponent } from './products/products.component';
 import { ShopCartComponent } from './shop-cart/shop-cart.component';
+import { ReceiptComponent } from './receipt/receipt.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -14,7 +15,7 @@ const routes: Routes = [
   {path: 'providers', component: ProvidersComponent, /*canActivate: [AuthGuardGuard]*/},
 {path: 'products', component: ProductsComponent, /*canActivate: [AuthGuardGuard]*/},
   {path: 'cart', component: ShopCartComponent, /*canActivate: [AuthGuardGuard]*/},
-
+  {path: 'receipt', component: ReceiptComponent, /*canActivate: [AuthGuardGuard]*/},
   {path: '**', redirectTo: '/login'}
 ];
 

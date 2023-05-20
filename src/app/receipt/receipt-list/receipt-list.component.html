@@ -1,0 +1,51 @@
+<div class="m-2">
+  <div class="d-flex justify-content-center">
+  <h1>Receipt History Between Owner - Provider</h1>
+</div>
+  <div class="text-center">
+    <span *ngIf="isLoading"><i class="fas fa-spinner fa-pulse fa-lg"></i> Cargando</span>
+  </div>
+
+  <div *ngIf="!isLoading" class="table-responsive">
+    <div class="text-center">
+      <span *ngIf="error">
+        <div class="container">
+          <div class="row justify-content-center mt-5">
+            <div class="col-lg-6">
+              <div class="alert alert-danger text-center">
+                <h4 class="alert-heading">Oops, something went wrong!</h4>
+                <p>We apologize for the inconvenience. An error occurred while processing your request.</p>
+                <p>Please try again later or contact our support team for assistance.</p>
+                <p>{{error.message}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </span>
+    </div>
+
+
+    <table *ngIf="!error" class="table table-hover table-bordered table-light">
+      <thead>
+        <tr>
+          <th class="align-middle text-center">PRODUCT ID</th>
+          <th class="align-middle text-center">PRODUCT BOUGHT</th>
+          <th class="align-middle text-center">UNITS</th>
+          <th class="align-middle text-center">DATE</th>
+          <th class="align-middle text-center">PROVIDER DETAILS</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let receipt of receiptList; let i = index">
+          <td class="align-middle text-center">{{receipt.productId}}</td>
+          <td class="align-middle text-center">{{receipt.description}}</td>
+          <td class="align-middle text-center">{{receipt.units}}</td>
+          <td class="align-middle text-center">{{receipt.date}}</td>
+          <td class="align-middle text-center">{{receipt.provider.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
