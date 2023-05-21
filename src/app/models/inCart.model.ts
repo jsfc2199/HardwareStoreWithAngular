@@ -5,6 +5,8 @@ export class CartItem {
     public id: string,
     public product: Product,
     public totalItems: number,
-    public totalValue: number
+    public totalValue: number,
+    public clientName: string,
+    public sellerName: string
   ) {}
 }

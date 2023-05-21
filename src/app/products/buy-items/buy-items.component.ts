@@ -11,6 +11,8 @@ import { Receipt } from 'src/app/models/receipt.model';
 import { nanoid } from 'nanoid';
 import * as moment from 'moment';
 import { ReceiptService } from 'src/app/receipt/receipt.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-buy-items',
@@ -21,7 +23,8 @@ export class BuyItemsComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private productService: ProductsServiceService,
-    private receiptService: ReceiptService
+    private receiptService: ReceiptService,
+    private router: Router
   ) {}
 
   @Input() selectedProduct!: Product | null;
@@ -78,6 +81,13 @@ export class BuyItemsComponent implements OnInit {
     this.receiptService.addReceipt(receipt)
     this.store.dispatch( new fromReceipts.AddReceiptAction(receipt) )
 
+    this.router.navigate(['receipt'])
+
+    Swal.fire({
+      icon:'success',
+      title:'Receipt Created',
+      text: 'A new Receipt has beed added'
+    })
 
   }
 

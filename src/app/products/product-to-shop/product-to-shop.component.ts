@@ -32,6 +32,8 @@ export class ProductToShopComponent implements OnInit {
   ngOnInit(): void {
     this.productToAdd = new FormGroup({
       amount: new FormControl(0, [Validators.required, Validators.min(0)]),
+      clientName: new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z\s]+$')]),
+      seller: new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z\s]+$')])
     });
   }
 
@@ -74,12 +76,15 @@ export class ProductToShopComponent implements OnInit {
       this.store.dispatch(new fromProducts.UpdateProduct(productToUpdate));
       this.productService.UpdateProduct(productToUpdate).subscribe();
 
+
       //dispatch to cart
       const itemToAdd: CartItem = new CartItem(
         nanoid(),
         this.selectedProduct!,
         this.totalProductsOfAnItem,
-        this.total
+        this.total,
+        this.productToAdd.get('clientName')!.value,
+        this.productToAdd.get('seller')!.value
       );
 
       this.store.dispatch(new fromCart.SendProductToCart(itemToAdd));

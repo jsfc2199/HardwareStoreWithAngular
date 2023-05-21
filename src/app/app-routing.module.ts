@@ -7,6 +7,7 @@ import { AuthGuardGuard } from './auth/auth-guard.guard';
 import { ProductsComponent } from './products/products.component';
 import { ShopCartComponent } from './shop-cart/shop-cart.component';
 import { ReceiptComponent } from './receipt/receipt.component';
+import { BillComponent } from './bill/bill.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'products', component: ProductsComponent, /*canActivate: [AuthGuardGuard]*/},
   {path: 'cart', component: ShopCartComponent, /*canActivate: [AuthGuardGuard]*/},
   {path: 'receipt', component: ReceiptComponent, /*canActivate: [AuthGuardGuard]*/},
+  {path: 'bill', component: BillComponent, /*canActivate: [AuthGuardGuard]*/},
   {path: '**', redirectTo: '/login'}
 ];
 

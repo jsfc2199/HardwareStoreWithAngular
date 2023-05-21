@@ -11,6 +11,13 @@
                 <p class="text-muted">Description: {{selectedProduct?.description}}</p>
                 <p class="text-muted">Price: {{selectedProduct?.price | currency}}</p>
                 <p class="text-muted">Stock: {{selectedProduct?.unitsAvailable}} units available</p>
+
+
+                <input style="text-align: center;" id="clientName" name="clientName" type="text"
+                  class="form-control form-control-sm" formControlName="clientName" placeholder="Client Name" />
+                <br>
+                <input style="text-align: center;" id="seller" name="seller" type="text"
+                  class="form-control form-control-sm" formControlName="seller" placeholder="Seller Name" />
               </div>
               <div class="d-flex justify-content-center align-items-center mt-4">
                 <button class="btn btn-link px-2" (click)="decrementQuantity()" type="button">
@@ -39,7 +46,11 @@
   <div class="mb-3">
     <div class="text-center">
       <button type="submit" class="btn btn-primary mb-3" data-bs-dismiss="modal"
-        [disabled]="productToAdd.get('amount')!.value == 0">
+        [disabled]="productToAdd.get('amount')!.value == 0 ||
+                    productToAdd.get('clientName')!.value === null ||
+                    productToAdd.get('clientName')!.value === '' ||
+                    productToAdd.get('seller')!.value === null ||
+                    productToAdd.get('seller')!.value === ''">
         Submit
       </button>
     </div>
