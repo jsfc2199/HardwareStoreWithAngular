@@ -42,7 +42,7 @@
           <td class="align-middle text-center">{{bill.seller}}</td>
           <td class="align-middle text-center">{{bill.date}}</td>
           <td class="align-middle text-center" >{{getProductsBought(bill.productsBought)}}</td>
-          <td class="align-middle text-center">{{bill.totalPaid}}</td>
+          <td class="align-middle text-center">{{bill.totalPaid | currency}}</td>
         </tr>
       </tbody>
     </table>

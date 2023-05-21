@@ -22,7 +22,7 @@ export class AuthServiceService {
     private router: Router
   ) {}
 
-  private urls = ['/providers', '/products','/cart'];
+  private urls = ['/providers', '/products','/cart', '/receipt', '/bill'];
   getUrls(){
     return this.urls
   }

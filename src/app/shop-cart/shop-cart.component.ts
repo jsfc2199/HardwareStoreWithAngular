@@ -1,8 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducer';
 import { Subscription } from 'rxjs';
 import { CartItem } from '../models/inCart.model';
+import * as fromShop from './shop-store/shop.actions'
+import * as fromBill from '../bill/bill-store/bill.actions'
+import { Bill } from '../models/bill.model';
+import * as moment from 'moment';
+import { BillService } from '../bill/bill.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-shop-cart',
@@ -10,7 +17,8 @@ import { CartItem } from '../models/inCart.model';
   styleUrls: ['./shop-cart.component.css']
 })
 export class ShopCartComponent implements OnInit, OnDestroy {
-  constructor(private store: Store<AppState>){}
+  constructor(private store: Store<AppState>,private billService: BillService, private router:Router){}
+
 
   cartSubscription!: Subscription
   productsInCart: CartItem[] = []
@@ -22,12 +30,47 @@ export class ShopCartComponent implements OnInit, OnDestroy {
       this.productsInCart = shopCart.products
     })
 
-     this.updateCartTotals()
+    this.updateCartTotals()
   }
 
   onSubmit() {
-    
+    const clientNames = this.productsInCart.map(product =>{
+      return product.clientName
+    })
+
+    const sellerNames = this.productsInCart.map(product =>{
+      return product.sellerName
+    })
+
+    const productsBought = this.productsInCart.map(product =>{
+      return product.product
+    })
+
+    const billToAdd: Bill = new Bill(
+      clientNames.join(', '),
+      sellerNames.join(', '),
+      moment(new Date()).format("DD/MM/YYYY HH:mm:ss"),
+      productsBought,
+      this.totalPrice
+    )
+
+    this.totalPrice = 0
+    this.totalProducts = 0
+
+    this.store.dispatch(new fromBill.AddBillAction(billToAdd))
+    this.billService.addBills(billToAdd)
+    this.store.dispatch(new fromShop.ClearProductToCart())
+
+    this.router.navigate(['bill'])
+    Swal.fire({
+      icon:'success',
+      title: 'New Bill',
+      text:'A new bill has been added'
+    })
   }
+
+
+
 
   ngOnDestroy(): void {
     this.cartSubscription.unsubscribe()

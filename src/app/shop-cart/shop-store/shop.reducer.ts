@@ -9,10 +9,10 @@ const initialState: CartState = {
   products: []
 };
 
-export function CartReducer (state = initialState, action: fromCart.CartActions): CartState {
-  switch (action.type){
+export function CartReducer(state = initialState, action: fromCart.CartActions): CartState {
+  switch (action.type) {
     case fromCart.LOAD_CART:
-      return{
+      return {
         ...state
       }
     case fromCart.SEND_PRODUCT_TO_CART:
@@ -20,10 +20,10 @@ export function CartReducer (state = initialState, action: fromCart.CartActions)
 
       //if existingProductIndex  = -1 product not found in cart so is a new entry
       //if existingProductIndex != -1 product in cart, so it is neccesary to update the information
-      if(existingProductIndex !== -1){
-        const updatedProducts = state.products.map((product, index) =>{
-          if(index === existingProductIndex){
-            return{
+      if (existingProductIndex !== -1) {
+        const updatedProducts = state.products.map((product, index) => {
+          if (index === existingProductIndex) {
+            return {
               ...product,
               totalItems: product.totalItems + action.payload.totalItems,
               totalValue: product.totalValue + action.payload.totalValue,
@@ -31,15 +31,20 @@ export function CartReducer (state = initialState, action: fromCart.CartActions)
           }
           return product
         })
-        return{
+        return {
           ...state,
-        products: updatedProducts
+          products: updatedProducts
         }
       }
-      
-      return{
+
+      return {
         ...state,
         products: [...state.products, action.payload]
+      }
+    case fromCart.CLEAR_CART:
+      return {
+        ...state,
+        products: []
       }
     default:
       return {
