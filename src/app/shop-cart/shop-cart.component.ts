@@ -1,15 +1,15 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AppState } from '../app.reducer';
-import { Subscription } from 'rxjs';
-import { CartItem } from '../models/inCart.model';
-import * as fromShop from './shop-store/shop.actions'
-import * as fromBill from '../bill/bill-store/bill.actions'
-import { Bill } from '../models/bill.model';
-import * as moment from 'moment';
-import { BillService } from '../bill/bill.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
+import { AppState } from '../app.reducer';
+import * as fromBill from '../bill/bill-store/bill.actions';
+import { BillService } from '../bill/bill.service';
+import { Bill } from '../models/bill.model';
+import { CartItem } from '../models/inCart.model';
+import * as fromShop from './shop-store/shop.actions';
 
 @Component({
   selector: 'app-shop-cart',

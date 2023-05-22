@@ -1,6 +1,5 @@
 import { Action } from "@ngrx/store";
 import { CartItem } from "src/app/models/inCart.model";
-import { Product } from "src/app/models/product.model";
 
 export const SEND_PRODUCT_TO_CART = '[Shop Cart] Send product to cart';
 export const LOAD_CART = '[Shop Cart] Load cart';
